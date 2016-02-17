@@ -1,0 +1,278 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700)
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css)
+
+$blue = #6D97B5
+
+body
+	background: #eee
+	font-family: 'Ubuntu', sans-serif
+
+.usersonline
+	float: right
+	padding-right: 20px
+	
+	span
+		color: #111
+		text-transform: uppercase
+		font-size: 12px
+		z-index: 2
+		position: relative
+		font-weight: bold
+		
+		b
+			color: #19AC1A
+	
+	ul
+		background: rgba(210,210,210,.96)
+		position: fixed
+		border-right: 1px solid rgba(255,255,255,.2)
+		left: 0
+		top: 0
+		height: 100%
+		z-index: 2
+		display: none
+		padding: 10px
+		min-width: 50%
+		
+		li
+			color: #aaa
+			font-size: 14px
+			padding: 6px 12px
+
+			&.warning
+				color: #D0853C
+				
+			&.success
+				color: #4E8DD0
+
+.wrapper
+	width: 300px
+	overflow: hidden
+
+#login-dropdown-list .dropdown-menu
+	min-width: 280px
+	
+	.btn-primary
+		background: #D3222A
+		border: 0
+		
+		&:hover
+			background: #A91A20
+
+.dropdown-toggle
+	float: left
+	padding-left: 20px
+	font-size: 14px
+	
+.submit
+	width: 100%
+	position: fixed
+	top: 26px
+	left: 0
+	background: white
+	padding: 15px 20px
+	
+	p
+		text-align: center
+		font-size: 20px
+		padding: 0
+		color: #aaa
+		
+	.hold-input
+		position: relative
+		
+		.emoticons
+			position: absolute
+			right: 12px
+			top: 8px
+			color: #888
+			
+			&:hover
+				color: #E6C477
+				cursor: pointer
+				cursor: hand
+			
+			dialog
+				position: absolute
+				background: #F3F3F3
+				width: 284px
+				right: 0
+				top: 25px
+				padding: 10px
+				box-shadow: 0 0 5px #aaa
+				display: none
+				
+				img
+					width: 18px
+					margin: 4px
+					
+					&:hover
+						opacity: .4
+		
+		.color
+			position: absolute
+			right: 32px
+			top: 8px
+			color: #888
+			
+			&:hover
+				color: #E6C477
+				cursor: pointer
+				cursor: hand
+					
+			dialog
+				position: absolute
+				background: #F3F3F3
+				width: 284px
+				right: 0
+				top: 25px
+				padding: 10px
+				box-shadow: 0 0 5px #aaa
+				display: none
+				
+				p
+					text-transform: uppercase
+					font-size: 11px
+					padding: 2px 0
+					color: #999
+				
+				span
+					display: inline-block
+					width: 16px
+					height: 16px
+					border-radius: 50%
+					margin: 0 2px
+					
+					&:hover
+						opacity: .5
+			
+		input
+			background: white
+			border: 0
+			padding: 10px
+			padding-right: 50px
+			width: 100%
+			color: rgba(55,55,55,.7)
+			border: 1px solid rgba(155,155,155,.4)
+			font-size: 15px
+			border-radius: 2px
+			box-shadow: 0 0 2px #ddd inset
+			
+			&:hover
+				box-shadow: 0 0 4px rgba(55,55,55,.5)
+				
+			&:focus
+				box-shadow: 0 0 4px rgba(205,64,61,.5)
+
+header
+	background: white
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	padding: 14px 0
+	z-index: 2
+		
+	#login-dropdown-list a
+		color: #111
+		text-transform: uppercase
+		font-weight: bold
+	
+	#login-dropdown-list
+		text-align: center
+	
+	.dropdown-menu
+		width: 100%
+		border-radius: 0
+
+.nav
+	padding: 7px 24px
+	z-index: 123
+
+.messages
+	padding: 18px
+	height: 100%
+	overflow-y: auto
+	position: absolute
+	width: 100%
+	margin-top: 80px
+	
+	li
+		color: white
+		margin: 20px 0
+		display: table
+		position: relative
+		width: auto
+		background: #ddd
+		padding: 10px
+		border-radius: 4px
+		box-shadow: 0 0 2px 1px #ccc
+		
+		&:after
+			content: ""
+			position: absolute
+			border-left: 15px solid transparent
+			border-top: 10px solid #ddd
+			left: 15px
+			bottom: -10px
+		
+		p
+			font-size: 13px
+			font-weight: 300
+			padding: 4px 6px
+			color: #878787
+			
+			&:hover > i
+				opacity: 1
+			
+			span
+				color: rgba(205,64,61,1)
+				font-weight: bold
+				padding-right: 6px
+				
+			i
+				float: right
+				opacity: 0
+				transition: all .3s ease-in-out
+				font-style: normal
+				text-transform: uppercase
+				padding: 0 6px
+			
+			.ban
+				font-size: 12px
+				
+				&:hover
+					color: #D476EE
+			
+			.delete
+				color: rgba(10,10,10,.5)
+				font-size: 15px
+				
+				&:hover
+					color: red
+		
+		p+p
+			font-size: 12px
+			padding-top: 2px
+			border: 0
+			color: rgba(10,10,10,.3)
+			font-weight: normal
+			background: transparent
+			padding-left: 25px
+			position: srelative
+			
+			span
+				float: right
+	
+.banned
+	background: rgba(255,255,255,.80)
+	color: #ccc
+	position: fixed
+	top: 40px
+	padding: 8px 0
+	left: 0
+	z-index: 1
+	width: 100%
+	text-transform: uppercase
+	font-weight: bold
+	text-align: center

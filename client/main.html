@@ -1,0 +1,118 @@
+<head>
+  <title>Meteor Chat</title>
+</head>
+
+<body>
+
+<div class="wrapper">
+      <header>
+        <div class="submit">
+        {{#if currentUser}}
+            {{> input }}
+        {{else}}
+            <p>METEOR DEMO CHAT</p>
+        {{/if}}
+        </div>
+          <ul>
+          {{> loginButtons}}
+          {{> usersonline }}
+          </ul>
+      </header>
+      {{> messages }}
+      {{#if amIbanned }} <div class="banned">You've been banned!</div> {{/if}}
+</div>
+</body>
+
+<template name="messages">
+{{#if Template.subscriptionsReady}}
+  <ul class="messages">
+  {{#each messages}}
+    <li data-time="{{livestamp time}}">
+        <p><span style="color: {{ nameColor name }}; {{#if is_admin name}}border: 2px solid {{ nameColor name }}; padding: 2px 4px; margin-right: 8px;{{/if}}">{{name}}</span> {{{ parseEmoticons message }}} 
+       
+        {{#if adminOrAuthor name}}
+        <i data-id="{{ _id }}" class="fa fa-trash-o delete"></i>
+        {{/if}}
+
+        {{#if adminButNoMe name}}
+        <i data-id="{{ name }}" class="ban">{{#if checkBan name }} Banido {{else}} Banir {{/if}}</i>
+        {{/if}}
+
+        </p>
+    </li>
+  {{/each}}
+  </ul>
+  {{else}}
+    {{>spinner}}
+  {{/if}}
+  {{ > tooltips }}
+</template>
+
+<template name="input">
+  <div class="hold-input">
+      <input type="text" id="message" placeholder="Mensagem" disabled="{{ amIbanned }}">
+      <div class="emoticons">
+        <i class="fa fa-smile-o"></i>
+        <dialog>
+            <img src="assets/images/emoticons/caritas_03.png" data-rep="o_o">
+            <img src="assets/images/emoticons/caritas_05.png" data-rep=":D">
+            <img src="assets/images/emoticons/caritas_07.png" data-rep=":)">
+            <img src="assets/images/emoticons/caritas_09.png" data-rep=":(">
+            <img src="assets/images/emoticons/caritas_15.png" data-rep="-_-">
+            <img src="assets/images/emoticons/caritas_16.png" data-rep=":P">
+            <img src="assets/images/emoticons/caritas_17.png" data-rep=":O">
+            <img src="assets/images/emoticons/caritas_18.png" data-rep=":smirk:">
+            <img src="assets/images/emoticons/caritas_23.png" data-rep=">:(">
+            <img src="assets/images/emoticons/caritas_24.png" data-rep=":ninja:">
+            <img src="assets/images/emoticons/caritas_25.png" data-rep=":nerd:">
+            <img src="assets/images/emoticons/caritas_26.png" data-rep=":S">
+            <img src="assets/images/emoticons/caritas_31.png" data-rep=":bashful:">
+            <img src="assets/images/emoticons/caritas_32.png" data-rep=":crying:">
+            <img src="assets/images/emoticons/caritas_33.png" data-rep=":puke:">
+            <img src="assets/images/emoticons/caritas_34.png" data-rep=":love:">
+            <img src="assets/images/emoticons/caritas_39.png" data-rep=":devil:">
+            <img src="assets/images/emoticons/caritas_40.png" data-rep=":angel:">
+            <img src="assets/images/emoticons/caritas_41.png" data-rep=":8)">
+            <img src="assets/images/emoticons/caritas_42.png" data-rep=":wtf:">
+            <img src="assets/images/emoticons/caritas_47.png" data-rep=":sweating:">
+            <img src="assets/images/emoticons/caritas_48.png" data-rep=">:D">
+            <img src="assets/images/emoticons/caritas_49.png" data-rep=":spooked:">
+            <img src="assets/images/emoticons/caritas_50.png" data-rep=":embarrassed:">
+            <img src="assets/images/emoticons/caritas_55.png" data-rep="O.o">
+            <img src="assets/images/emoticons/caritas_56.png" data-rep="x-D">
+            <img src="assets/images/emoticons/caritas_57.png" data-rep=";)">
+            <img src="assets/images/emoticons/caritas_58.png" data-rep=":\">
+        </dialog>
+      </div>
+      <div class="color">
+          <i class="fa fa-cog"></i>
+          <dialog>
+              <p>Color</p>
+              <p>
+                <span style="background: #BF1313"></span>
+                <span style="background: #FF2731"></span>
+                <span style="background: #3081FF"></span>
+                <span style="background: #008000"></span>
+                <span style="background: #FF6238"></span>
+                <span style="background: #54206F"></span>
+                <span style="background: #010101"></span>
+                <span style="background: #DB68C4"></span>
+                <span style="background: #40BBD2"></span>
+                <span style="background: #D6B85F"></span>
+              </p>
+          </dialog>
+      </div>
+  </div>
+</template>
+
+<template name="usersonline">
+  <li class="usersonline">
+      <span class="onlineshow"><b>{{usersOnline.count}}</b> Online</span>
+      {{#if admin}}<span class="onlineshow">// <b>{{usersBanned.count}}</b> Banned</span>{{/if}}
+      <ul>
+      {{#each usersOnline}}
+          <li class="{{labelClass}}">{{username}}</li>
+      {{/each}}
+      </ul>
+  </li>
+</template>
